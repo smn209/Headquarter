@@ -26,6 +26,8 @@
 #include <common/assert.h>
 #include <common/paths.h>
 #include <common/noreturn.h>
+#include <common/dlfunc.h>
+#include <common/assert.h>
 
 #ifndef _Noreturn
 #define _Noreturn
