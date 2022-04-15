@@ -56,6 +56,7 @@ void log_cleanup(void)
     if (log_file) {
         (void) fclose(log_file);
         log_file = NULL;
+>>>>>>> 46f3839 (Append to log file instead of nuking it)
     }
 }
 
