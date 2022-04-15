@@ -52,6 +52,7 @@ void parse_command_args(int argc, char **argv)
     // arguments following, we will print the help and exit. Maybe we just want
     // to returns with an error flag set.
 
+<<<<<<< HEAD
     options.online_status = 1;
 
     const char *ptr;
@@ -62,6 +63,12 @@ void parse_command_args(int argc, char **argv)
     if ((ptr = getenv("HEADQUARTER_2FA_SECRET")) != NULL) {
         safe_strcpy(options.secret_2fa, ARRAY_SIZE(options.secret_2fa), ptr);
     }
+=======
+    options.mapid = 248; // By default with load GtoB first.
+    options.maptype = 3;   
+    options.log_file_name[0] = 0;
+    options.newauth = true;
+>>>>>>> bb4270c (Added -l option to declare log file name; useful if your plugin runs several times a day and you only want to dump it into 1 log file)
 
     for (int i = 0; i < argc; i++) {
         const char *arg = argv[i];
@@ -100,6 +107,7 @@ void parse_command_args(int argc, char **argv)
         } else if (!strcmp(arg, "-character") || !strcmp(arg, "--character")) {
             check_for_more_arguments(argc, argv, i, 1);
             safe_strcpy(options.charname, ARRAY_SIZE(options.charname), argv[++i]);
+<<<<<<< HEAD
         } else if (!strcmp(arg, "-mapid") || !strcmp(arg, "--mapid")) {
             check_for_more_arguments(argc, argv, i, 1);
             options.opt_map_id.set = true;
@@ -129,6 +137,18 @@ void parse_command_args(int argc, char **argv)
         } else if (arg[0] == '-') {
             log_error("Unknown flag '%s'", arg);
             print_help(true);
+=======
+        } else if (!strcmp(arg, "-oldauth")) {
+            options.newauth = false;
+        } else if (!strcmp(arg, "-mapid")) {
+            check_for_more_arguments(argc, i, 1);
+            options.mapid = atoi(argv[++i]);
+        } else if (!strcmp(arg, "-maptype")) {
+            options.maptype = atoi(argv[++i]);
+        } else if (!strcmp(arg, "-l")) {
+            check_for_more_arguments(argc, i, 1);
+            safe_strcpy(options.log_file_name, ARRAY_SIZE(options.log_file_name), argv[++i]);
+>>>>>>> bb4270c (Added -l option to declare log file name; useful if your plugin runs several times a day and you only want to dump it into 1 log file)
         } else {
             if (options.script) {
                 log_error("You shouldn't specify more than one script to run, '%s' already specified", options.script);
@@ -137,6 +157,7 @@ void parse_command_args(int argc, char **argv)
             options.script = arg;
         }
     }
+<<<<<<< HEAD
 
     if (!options.email[0]) {
         log_error("You need to specify '--email'");
@@ -220,5 +241,17 @@ void parse_command_args(int argc, char **argv)
         }
 
         options.game_version = (uint32_t)game_version;
+=======
+    // Assign a default log file name if one wasn't provided
+    if (!options.log_file_name[0]) {
+        
+        char timestamp[64];
+        time_t t = time(NULL);
+        struct tm ts;
+        // @Robustness: Deal with the error?
+        time_localtime(&t, &ts);
+        assert(strftime(timestamp, sizeof(timestamp), "%Y-%m-%d_%H-%M-%S", &ts) > 0);
+        assert(snprintf(options.log_file_name, sizeof(options.log_file_name), "%s_%d.txt", timestamp, getpid()) != -1);
+>>>>>>> bb4270c (Added -l option to declare log file name; useful if your plugin runs several times a day and you only want to dump it into 1 log file)
     }
 }
