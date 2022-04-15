@@ -194,6 +194,13 @@ void Network_Init(void)
     if (DiffieHellmanCtx_Make(&server_keys, &g_GameData) != 0) {
         log_error("Failed to create Diffie-Hellman params");
         return;
+        dir_path[length] = 0;
+        if (file = fopen(file_path, "rb")) {
+            file_read_ok = read_dhm_key_file(&official_server_keys, file);
+            fclose(file);
+        }
+        
+>>>>>>> 8785ad0 (Changed `read_dhm_key_file` to use a file ptr instead of name to stop log spam when looking for log file to write to)
     }
 
     const char secret[] = "Stradivarius";
