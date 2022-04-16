@@ -70,6 +70,8 @@ const char* ssl_err_string(const int error_code)
         return "Bad Input Data";
     case ERR_SSL_BUFFER_TOO_SMALL:
         return "Buffer Too Small";
+    case ERR_SSL_INVALID_EMAIL:
+        return "Invalid Email";
     }
     return "Unknown Error";
 }
