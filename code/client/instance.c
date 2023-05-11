@@ -60,9 +60,11 @@ void HandleGameServerInfo(Connection *conn, size_t psize, Packet *packet)
         uint32_t player_id;
     } GameServerInfo;
 #pragma pack(pop)
-
+    
     assert(packet->header == AUTH_SMSG_GAME_SERVER_INFO);
     assert(sizeof(GameServerInfo) == psize);
+
+    
 
     GwClient *client = cast(GwClient *)conn->data;
     GameServerInfo *pack = cast(GameServerInfo *)packet;
