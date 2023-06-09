@@ -65,7 +65,7 @@ void HandleChatMessageCore(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
 
     assert(packet->header == GAME_SMSG_CHAT_MESSAGE_CORE);
-    assert(sizeof(MessageCore) == psize);
+    assert(sizeof(MessageCore) <= psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     MessageCore *pack = cast(MessageCore *)packet;
@@ -91,7 +91,7 @@ void HandleChatMessageLocal(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
 
     assert(packet->header == GAME_SMSG_CHAT_MESSAGE_LOCAL);
-    assert(sizeof(MessageLocal) == psize);
+    assert(sizeof(MessageLocal) <= psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     MessageLocal *pack = cast(MessageLocal *)packet;
@@ -142,7 +142,7 @@ void HandleChatMessageGlobal(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
 
     assert(packet->header == GAME_SMSG_CHAT_MESSAGE_GLOBAL);
-    assert(sizeof(MessageGlobal) == psize);
+    assert(sizeof(MessageGlobal) <= psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     MessageGlobal *pack = cast(MessageGlobal *)packet;
@@ -196,7 +196,7 @@ void HandleChatMessageServer(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
 
     assert(packet->header == GAME_SMSG_CHAT_MESSAGE_SERVER);
-    assert(sizeof(MessageServer) == psize);
+    assert(sizeof(MessageServer) <= psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     MessageServer *pack = cast(MessageServer *)packet;
@@ -244,7 +244,7 @@ void HandleWhisperReceived(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
     
     assert(packet->header == AUTH_SMSG_WHISPER_RECEIVED);
-    assert(sizeof(WhisperReceived) == psize);
+    assert(sizeof(WhisperReceived) <= psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     WhisperReceived *pack = cast(WhisperReceived *)packet;
