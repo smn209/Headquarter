@@ -16,7 +16,7 @@ void HandleDialogButton(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
 
     assert(packet->header == GAME_SMSG_DIALOG_BUTTON);
-    assert(sizeof(Button) <= psize);
+    assert(sizeof(Button) == psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     Button *pack = cast(Button *)packet;
@@ -55,7 +55,7 @@ void HandleDialogBody(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
 
     assert(packet->header == GAME_SMSG_DIALOG_BODY);
-    assert(sizeof(DialogBody) <= psize);
+    assert(sizeof(DialogBody) == psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     DialogBody *pack = cast(DialogBody *)packet;
@@ -77,7 +77,7 @@ void HandleDialogSender(Connection *conn, size_t psize, Packet *packet)
 #pragma pack(pop)
 
     assert(packet->header == GAME_SMSG_DIALOG_SENDER);
-    assert(sizeof(DialogSender) <= psize);
+    assert(sizeof(DialogSender) == psize);
 
     GwClient *client = cast(GwClient *)conn->data;
     DialogSender *pack = cast(DialogSender *)packet;

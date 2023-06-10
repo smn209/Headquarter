@@ -690,7 +690,7 @@ void SendPacket(Connection *conn, size_t size, void *p)
 
     MsgFormat format = conn->client_msg_format.data[header];
     assert(header == format.header);
-    //assert(size == format.unpack_size);
+    assert(size == format.unpack_size);
 
     array_uint8_t *out = &conn->out;
     size_t availaible_length = out->capacity - out->size;
