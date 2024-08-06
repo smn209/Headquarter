@@ -261,3 +261,11 @@ void parse_command_args(int argc, char **argv)
 >>>>>>> bb4270c (Added -l option to declare log file name; useful if your plugin runs several times a day and you only want to dump it into 1 log file)
     }
 }
+
+HQAPI int GetArgc() {
+    return parsed_argc;
+}
+
+HQAPI char** GetArgv() {
+    return parsed_argv;
+}
