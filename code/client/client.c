@@ -23,6 +23,8 @@ void init_client(GwClient *client)
 
     array_init(&client->player_hero.maps_unlocked);
 
+    array_init(&client->player_hero.maps_unlocked);
+
     init_chat(&client->chat);
 
     client->next_transaction_id = 1;
